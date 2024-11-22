@@ -22,6 +22,10 @@ root.columnconfigure(0, weight=1)
 frame = tk.Frame(root, bg="#F0F8FF", padx=20, pady=20)
 frame.grid(sticky="nsew")
 
+# Etiqueta
+etiquetaIntroduccion = tk.Label(frame, text="Por favor, elige la(s) operaciones que desee realizar.", font=("Helvetica", 16), bg="white", padx=10, pady=5)
+etiquetaIntroduccion.pack(pady=20)
+
 # Botón para los 2 métodos
 botonEuler = tk.Button(frame, text="Euler", command=abrirEuler, font=("Helvetica", 16), bg="#ADD8E6", relief="raised", padx=10, pady=5)
 botonEuler.pack(pady=20)

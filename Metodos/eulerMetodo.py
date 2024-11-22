@@ -12,7 +12,6 @@ class Euler:
         self.root = tk.Tk()
         self.entryFuncion, self.entryCondicionY, self.entryTamañoH, self.entryNumeroPasos, self.entryX0, self.entryXf, self.botonCalcular = styleInterfaz.aplicarEstiloInterfaz(self.root, returnTodos=False)
         
-        # Configurar el botón
         self.botonCalcular.config(command=self.calcularEuler)
         
     def calcularEuler(self):
@@ -20,7 +19,7 @@ class Euler:
             # Obtener valores de las entradas
             funcion_str = self.entryFuncion.get().strip()
             condicion_y = float(self.entryCondicionY.get())
-            tamaño_h = float(self.entryTamañoH.get())
+            tamañoH = float(self.entryTamañoH.get())
             x0 = float(self.entryX0.get())
             xf = float(self.entryXf.get())
             
@@ -28,7 +27,7 @@ class Euler:
             if self.entryNumeroPasos.get().strip():
                 n_pasos = int(self.entryNumeroPasos.get())
             else:
-                n_pasos = int((xf - x0) / tamaño_h)
+                n_pasos = int((xf - x0) / tamañoH)
             
             # Validar formato de la ecuación ingresada
             if "=" in funcion_str:
@@ -43,20 +42,19 @@ class Euler:
             x, y = symbols('x y')
             funcion = lambdify((x, y), sympify(funcion_str), "math")
 
-            # Inicializar listas para almacenar resultados
-            xs = [x0]
-            ys = [condicion_y]
+            listaXs = [x0]
+            listaYs = [condicion_y]
             
             # Implementación del método de Euler
             for i in range(n_pasos):
-                xi, yi = xs[-1], ys[-1]
-                yi_nuevo = yi + tamaño_h * funcion(xi, yi)
-                xi_nuevo = xi + tamaño_h
-                xs.append(xi_nuevo)
-                ys.append(yi_nuevo)
+                xi, yi = listaXs[-1], listaYs[-1]
+                yiNuevo = yi + tamañoH * funcion(xi, yi)
+                xiNuevo = xi + tamañoH
+                listaXs.append(xiNuevo)
+                listaYs.append(yiNuevo) 
             
             # Generar resultados en forma de texto
-            resultado = "\n".join([f"x{i}: {xs[i]:.5f}, y{i}: {ys[i]:.5f}" for i in range(len(xs))])
+            resultado = "\n".join([f"x{i}: {listaXs[i]:.5f}, y{i}: {listaYs[i]:.5f}" for i in range(len(listaXs))])
             self.mostrarResultado(resultado)
         
         except Exception as e:

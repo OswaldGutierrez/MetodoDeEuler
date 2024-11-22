@@ -48,27 +48,26 @@ class Error:
             funcion = lambdify((x, y), sympify(funcionStr), "math")
             solucionExacta = lambdify(x, sympify(solucionAnalítica), "math")
 
-            # Inicializar listas para almacenar resultados
-            xs = [x0]
-            ys = [condicionY]
-            errores = []
+            listaXs = [x0]
+            listaYs = [condicionY]
+            listaErrores = []
             
             # Implementación del método de Euler con cálculo del error
             for i in range(numPasos):
-                xi, yi = xs[-1], ys[-1]
+                xi, yi = listaXs[-1], listaYs[-1]
                 yiNuevo = yi + tamañoH * funcion(xi, yi)
                 xiNuevo = xi + tamañoH
-                xs.append(xiNuevo)
-                ys.append(yiNuevo)
+                listaXs.append(xiNuevo)
+                listaYs.append(yiNuevo)
 
                 # Calcular error absoluto con la solución exacta
                 error = abs(solucionExacta(xiNuevo) - yiNuevo)
 
                 # Evaluar y formatear los errores numéricamente
-                errores.append(error)
+                listaErrores.append(error)
             
             # Generar resultados en forma de texto
-            resultados = "\n".join([f"x{i}: {xs[i]:.5f}, Aproximación{i}: {ys[i]:.5f}, Error Absoluto{i}: {errores[i-1]:.5e}" for i in range(1, len(xs))])
+            resultados = "\n".join([f"x{i}: {listaXs[i]:.5f}, Aproximación{i}: {listaYs[i]:.5f}, Error Absoluto{i}: {listaErrores[i-1]:.5e}" for i in range(1, len(listaXs))])
             self.mostrarResultado(f"Resultados:\n{resultados}")
         
         except Exception as e:

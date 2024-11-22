@@ -3,7 +3,11 @@ import tkinter as tk
 
 def aplicarEstiloInterfaz(root, returnTodos=True):
     # Configuración de la interfaz gráfica
-    root.title("Método Euler")
+    if returnTodos:
+        root.title("Método Euler y Análisis de error")
+    else:
+        root.title("Método Euler")
+    
     root.config(bg="lightblue")
 
     # Hacer que la ventana sea responsiva
