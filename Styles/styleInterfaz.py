@@ -1,7 +1,7 @@
 import tkinter as tk
 
 
-def aplicarEstiloInterfaz(root):
+def aplicarEstiloInterfaz(root, returnTodos=True):
     # Configuración de la interfaz gráfica
     root.title("Método Euler")
     root.config(bg="lightblue")
@@ -37,6 +37,11 @@ def aplicarEstiloInterfaz(root):
     etiquetaXf = tk.Label(frame, text="Ingresa el valor inicial de Xf:")
     etiquetaXf.grid(sticky="w", row=5, column=0, padx=10, pady=5)
     
+    if returnTodos:
+        etiquetaSol = tk.Label(frame, text="Ingresa el valor de la solución analítica:")
+        etiquetaSol.grid(sticky="w", row=6, column=0, padx=10, pady=5)
+    
+    
     # Entrys o TextBox
     entryFuncion = tk.Entry(frame)
     entryFuncion.grid(row=0, column=1, padx=10, pady=5)
@@ -56,10 +61,18 @@ def aplicarEstiloInterfaz(root):
     entryXf = tk.Entry(frame)
     entryXf.grid(row=5, column=1, padx=10, pady=5)
     
+    if returnTodos:
+        entrySol = tk.Entry(frame)
+        entrySol.grid(row=6, column=1, padx=10, pady=5)
+    
     # Botón para calcular
     botonCalcular = tk.Button(frame, text="Calcular")
-    botonCalcular.grid(row=6, column=0, columnspan=2, padx=10, pady=5, sticky="ew")
+    botonCalcular.grid(row=7, column=0, columnspan=2, padx=10, pady=5, sticky="ew")
     
-    # Loop principal de la aplicación
-    return (entryFuncion, entryCondicionY, entryTamañoH, entryNumeroPasos, entryX0, entryXf, botonCalcular)
+    if returnTodos:
+        return (entryFuncion, entryCondicionY, entryTamañoH, entryNumeroPasos, entryX0, entryXf, botonCalcular, entrySol)
+    else:
+        return (entryFuncion, entryCondicionY, entryTamañoH, entryNumeroPasos, entryX0, entryXf, botonCalcular)
+    
+    
     

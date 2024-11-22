@@ -10,7 +10,7 @@ from Styles import styleInterfaz
 class Euler:
     def __init__(self):
         self.root = tk.Tk()
-        self.entryFuncion, self.entryCondicionY, self.entryTamañoH, self.entryNumeroPasos, self.entryX0, self.entryXf, self.botonCalcular = styleInterfaz.aplicarEstiloInterfaz(self.root)
+        self.entryFuncion, self.entryCondicionY, self.entryTamañoH, self.entryNumeroPasos, self.entryX0, self.entryXf, self.botonCalcular = styleInterfaz.aplicarEstiloInterfaz(self.root, returnTodos=False)
         
         # Configurar el botón
         self.botonCalcular.config(command=self.calcularEuler)
